@@ -3,11 +3,11 @@ import { StyleSheet, Text, View } from "react-native";
 import Event from "../domain/Event";
 
 type Props = {
-  event: Event
-}
+  event: Event;
+};
 
 const EventCard: React.FC<Props> = ({ event }) => {
-  return(
+  return (
     <View style={styles.card}>
       <View style={styles.header}>
         <Text style={styles.title}>{event.title}</Text>
@@ -15,18 +15,16 @@ const EventCard: React.FC<Props> = ({ event }) => {
       </View>
       <View style={styles.main}>
         <View style={styles.about}>
-          <Text  style={styles.text}>
-            {"О событии: " + event.desc}
-            </Text>
-          </View>
+          <Text style={styles.text}>{"О событии: " + event.desc}</Text>
+        </View>
         <View style={styles.time}>
           <Text style={styles.text}>{event.time}</Text>
           <Text style={styles.text}>{event.date}</Text>
         </View>
       </View>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   card: {
@@ -34,12 +32,11 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginBottom: 8,
     padding: 10,
-    backgroundColor: "#C4C4C4"
+    backgroundColor: "#C4C4C4",
   },
-  header: {
-  },
+  header: {},
   title: {
-    fontFamily: 'Roboto',
+    fontFamily: "Roboto",
     fontStyle: "normal",
     fontWeight: "500",
     fontSize: 18,
@@ -50,26 +47,26 @@ const styles = StyleSheet.create({
   main: {
     // flex: 1,
     flexDirection: "row",
-    flexShrink: 1
+    flexShrink: 1,
   },
   about: {
-    flexBasis: "70%"
+    flexBasis: "70%",
   },
   time: {
-    display:"flex",
+    display: "flex",
     flexDirection: "column",
     justifyContent: "flex-end",
     alignItems: "flex-end",
   },
   text: {
-    fontFamily: 'Roboto',
+    fontFamily: "Roboto",
     fontStyle: "normal",
     fontWeight: "400",
     fontSize: 12,
     lineHeight: 14,
 
     color: "#000000",
-  }
-})
+  },
+});
 
-export default EventCard
+export default EventCard;

@@ -1,10 +1,10 @@
-import React from 'react'
-import { SafeAreaView, StyleSheet, View,Text } from 'react-native'
-import { useParams} from "react-router"
+import React from "react";
+import { SafeAreaView, StyleSheet, View, Text } from "react-native";
+import { useParams } from "react-router";
 
 type Params = {
-  id: string
-}
+  id: string;
+};
 
 const Event: React.FC = () => {
   const { id } = useParams<Params>();
@@ -15,8 +15,8 @@ const Event: React.FC = () => {
         <Text style={styles.text}>{"Event: " + id}</Text>
       </View>
     </SafeAreaView>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -25,9 +25,9 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: "CircularStd-Book",
     fontSize: 14,
-    color: '#2f354b',
-    textAlign: 'center'
-  }
-})
+    color: "#2f354b",
+    textAlign: "center",
+  },
+});
 
-export default Event
+export default Event;

@@ -1,10 +1,10 @@
-import React from 'react'
+import React from "react";
 import { NativeRouter, Route } from "react-router-native";
-import Main from './main';
-import CreateEventPage from './pages/createEvent/createEvent';
-import Event from './pages/event/event';
-import ProfilePage from './pages/profile/profile';
-import SearchPage from './pages/search/search';
+import Main from "./main";
+import CreateEventPage from "./pages/createEvent/createEvent";
+import Event from "./pages/event/event";
+import ProfilePage from "./pages/profile/profile";
+import SearchPage from "./pages/search/search";
 
 const Routing: React.FC = () => {
   return (
@@ -16,7 +16,7 @@ const Routing: React.FC = () => {
         <Route path="/event/:id" component={Event} />
       </Main>
     </NativeRouter>
-  )
-}
+  );
+};
 
-export default Routing
+export default Routing;

@@ -6,4 +6,4 @@ interface Event {
   date: string;
 }
 
-export default Event
+export default Event;
