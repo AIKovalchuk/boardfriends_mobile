@@ -1,16 +1,22 @@
 import React from "react";
-import { SafeAreaView, FlatList, StyleSheet, ListRenderItem } from "react-native";
+import { TouchableOpacity , SafeAreaView, FlatList, StyleSheet, ListRenderItem } from "react-native";
 import Event from "../domain/Event";
 import EventCard from "./card";
+import { useHistory } from "react-router";
 
 type Props = {
   events: Event[];
 }
 
 const EventList: React.FC<Props> = ({ events }) => {
+  const history = useHistory()
+
+  const openEvent = (id: number) => {
+    history.push(`/event/${id}`)
+  }
 
   const renderItem: ListRenderItem<Event> = (event) => {
-    return <EventCard event={event.item} />
+    return <TouchableOpacity  onPress={() => openEvent(event.item.id)} ><EventCard event={event.item} /></TouchableOpacity >
   }
 
   return (

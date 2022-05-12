@@ -1,8 +1,8 @@
 import React from "react";
-import { Text } from "react-native";
+import { View, Text } from "react-native";
 
-const CreateEventPage = () => {
-  return(<Text>Create Event</Text>)
+const CreateEventPage: React.FC = () => {
+  return(<View><Text>Create Event</Text></View>)
 }
 
 export default CreateEventPage

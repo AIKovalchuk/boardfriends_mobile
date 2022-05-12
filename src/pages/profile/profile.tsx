@@ -1,7 +1,7 @@
 import React from "react";
 import { Text } from "react-native";
 
-const ProfilePage = () => {
+const ProfilePage: React.FC = () => {
   return(<Text>Profile</Text>)
 }
 
