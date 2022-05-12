@@ -16,15 +16,12 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import Routing from './src/routing';
 
 const App = () => {
 
   return (
-  <View style={styles.container}>
-    <View style={styles.card}><Text>Hello, world! 1</Text></View>
-    <View style={styles.card}><Text>Hello, world! 2</Text></View>
-    <View style={styles.card}><Text>Hello, world! 3</Text></View>
-  </View>
+    <Routing />
   );
 };
 
