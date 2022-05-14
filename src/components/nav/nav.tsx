@@ -15,7 +15,7 @@ const NavigationBar = () => {
       <Link to={"/create"} style={styles.navItem} underlayColor="#f0f4f7">
         <CreateIcon />
       </Link>
-      <Link to={"/profile"} style={styles.navItem} underlayColor="#f0f4f7">
+      <Link to={"/login"} style={styles.navItem} underlayColor="#f0f4f7">
         <AcountIcon />
       </Link>
     </View>
@@ -26,6 +26,9 @@ const styles = StyleSheet.create({
   nav: {
     flexDirection: "row",
     justifyContent: "space-around",
+
+    borderTopWidth: 1,
+    borderTopColor: "#c5c5c5",
   },
   navItem: {
     flex: 1,
