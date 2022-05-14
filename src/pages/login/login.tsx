@@ -34,7 +34,6 @@ const LoginPage: React.FC = () => {
           <Button title="Войти" onPress={auth} />
         </View>
 
-        {/* Sub text for register */}
         <View style={styles.inviteToSignUp}>
           <Text style={styles.signUp_text}>{"Ещё нет аккаунта?"}&#32;</Text>
           <Link to="/signup">
