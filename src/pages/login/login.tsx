@@ -1,10 +1,16 @@
 import React from "react";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
-import { Link } from "react-router-native";
+import { Link, useHistory } from "react-router-native";
 import Button from "../../components/button";
 import Input from "../../components/input";
 
 const LoginPage: React.FC = () => {
+  const history = useHistory();
+
+  const auth = () => {
+    history.push("/profile");
+  };
+
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <View style={styles.page}>
@@ -25,7 +31,7 @@ const LoginPage: React.FC = () => {
             placeholder="Введите пароль..."
             onChange={() => undefined}
           />
-          <Button title="Войти" />
+          <Button title="Войти" onPress={auth} />
         </View>
 
         {/* Sub text for register */}
