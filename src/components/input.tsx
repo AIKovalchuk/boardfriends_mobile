@@ -1,34 +1,41 @@
 import React from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TextInputProps,
+  View,
+} from "react-native";
 
 type Props = {
   style?: object;
   label?: string;
-  placeholder?: string;
-  value?: string;
-  onChange: (query: string) => void;
+  // onChange: (query: string) => void;
+  error?: string;
+  secureTextEntry?: boolean;
 };
 
-const Input: React.FC<Props> = ({
+const Input: React.FC<Props & TextInputProps> = ({
   style,
   label,
-  placeholder,
-  value,
-  onChange,
+  // onChange,
+  error,
+  secureTextEntry,
+  ...props
 }) => {
-  const handleInput = (text: string) => {
-    onChange(text);
-  };
-
   return (
-    <View>
-      {label && <Text style={styles.label}>{label}</Text>}
-      <TextInput
-        style={[style, styles.input]}
-        placeholder={placeholder}
-        value={value}
-        onChangeText={handleInput}
-      />
+    <View style={{ marginBottom: 20 }}>
+      <Text style={styles.label}>{label}</Text>
+      <View style={[styles.inputContainer]}>
+        <TextInput
+          autoCorrect={false}
+          style={styles.input}
+          placeholderTextColor="rgba(0, 0, 0, 0.4)"
+          secureTextEntry={secureTextEntry}
+          {...props}
+        />
+      </View>
+      {error && <Text>{error}</Text>}
     </View>
   );
 };
@@ -36,31 +43,30 @@ const Input: React.FC<Props> = ({
 const styles = StyleSheet.create({
   label: {
     color: "#000",
-    fontSize: 16,
-    marginLeft: 4,
+    fontSize: 14,
+    marginLeft: 12,
+    marginBottom: 4,
   },
-  input: {
+  inputContainer: {
+    // height: 40,
+    paddingHorizontal: 8,
     borderRadius: 16,
-    fontFamily: "Roboto",
-    fontStyle: "normal",
-    fontWeight: "500",
-    fontSize: 18,
-    lineHeight: 21,
-
-    paddingLeft: 4,
-    textAlignVertical: "top",
-
     backgroundColor: "#fff",
-
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 3,
+      height: 4,
     },
     shadowOpacity: 0.27,
-    shadowRadius: 4.65,
-
+    shadowRadius: 4,
     elevation: 6,
+
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  input: {
+    flex: 1,
+    color: "#000",
   },
 });
 

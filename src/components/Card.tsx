@@ -10,16 +10,16 @@ const EventCard: React.FC<Props> = ({ event }) => {
   return (
     <View style={styles.card}>
       <View style={styles.header}>
-        <Text style={styles.title}>{event.title}</Text>
+        <Text style={styles.title}>{event.name}</Text>
         {/* TODO: Tags */}
       </View>
       <View style={styles.main}>
         <View style={styles.about}>
-          <Text style={styles.text}>{"О событии: " + event.desc}</Text>
+          <Text style={styles.text}>{"О событии: " + event.comment}</Text>
         </View>
         <View style={styles.time}>
           <Text style={styles.text}>{event.time}</Text>
-          <Text style={styles.text}>{event.date}</Text>
+          {/* <Text style={styles.text}>{event.date}</Text> */}
         </View>
       </View>
     </View>
@@ -32,7 +32,21 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginBottom: 8,
     padding: 10,
-    backgroundColor: "#C4C4C4",
+    minHeight: 60,
+    maxHeight: 90,
+    borderColor: "#F86624",
+    borderWidth: 1,
+    justifyContent: "space-between",
+
+    // shadowColor: "#000",
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 2,
+    // },
+    // shadowOpacity: 0.25,
+    // shadowRadius: 3.84,
+
+    // elevation: 5,
   },
   header: {},
   title: {

@@ -10,13 +10,13 @@ const NavigationBar = () => {
   return (
     <View style={styles.nav}>
       <Link to={"/"} style={styles.navItem} underlayColor="#f0f4f7">
-        <SearchIcon />
+        <SearchIcon style={styles.icon} />
       </Link>
       <Link to={"/create"} style={styles.navItem} underlayColor="#f0f4f7">
-        <CreateIcon />
+        <CreateIcon style={styles.icon} />
       </Link>
-      <Link to={"/login"} style={styles.navItem} underlayColor="#f0f4f7">
-        <AcountIcon />
+      <Link to={"/profile"} style={styles.navItem} underlayColor="#f0f4f7">
+        <AcountIcon style={styles.icon} />
       </Link>
     </View>
   );
@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
 
     borderTopWidth: 1,
     borderTopColor: "#c5c5c5",
+    backgroundColor: "white",
   },
   navItem: {
     flex: 1,
@@ -37,6 +38,10 @@ const styles = StyleSheet.create({
   },
   subNavItem: {
     padding: 5,
+  },
+  icon: {
+    height: 32,
+    width: 32,
   },
 });
 

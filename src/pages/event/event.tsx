@@ -85,11 +85,34 @@ const event$: Event & EventFull = {
 const EventPage: React.FC = () => {
   const { id } = useParams<Params>();
   const [event, setEvent] = React.useState<Event & EventFull>(event$);
-  const [fetch, isLoading, error] = useFetch();
+  // const [fetch, isLoading, error] = useFetch();
+  const [participants, setParticipants] = React.useState<any>([]);
+
+  const loadEvent = async () => {
+    const event$ = await fetch("http://13.38.229.216:5000/api/events/" + id, {
+      method: "GET",
+    }).then(res => res.json());
+    setEvent(event$);
+
+    const people = await fetch(
+      "http://13.38.229.216:5000/api/events/participation/" + id,
+      {
+        method: "GET",
+      },
+    )
+      .then(res => res.json())
+      .catch(e => console.log(e));
+    console.log("People:", people);
+    setParticipants(people);
+  };
+
+  React.useEffect(() => {
+    loadEvent();
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
-      {isLoading && (
+      {/* {isLoading && (
         <View>
           <Text>{"Loading..."}</Text>
         </View>
@@ -98,35 +121,38 @@ const EventPage: React.FC = () => {
         <View>
           <Text>{error}</Text>
         </View>
-      )}
+      )} */}
       <ScrollView>
         <View style={styles.event}>
           <Image
             style={styles.image}
             source={{
-              uri: event.picUri,
+              uri:
+                event.picUri ||
+                "https://shop.meeplehouse.ru/upload/iblock/ef1/ef144fa9b8756d21ca72dda096bf250b.jpg",
             }}
           />
           <View style={styles.eventContainer}>
-            <Text style={styles.title}>{event.title}</Text>
+            <Text style={styles.title}>{event.name}</Text>
             <View style={styles.info}>
               <View style={styles.infoLine}>
                 <CalendarIcon style={styles.icon} />
-                <Text style={styles.text}>{event.date + " " + event.time}</Text>
+                <Text style={styles.text}>{event.time}</Text>
               </View>
               <View style={styles.infoLine}>
                 <LocationIcon style={styles.icon} />
-                <Text style={styles.text}>{event.location}</Text>
+                <Text style={styles.text}>{event.place}</Text>
               </View>
               <View style={styles.infoLine}>
                 <ParticipantsIcon style={styles.icon} />
                 <Text style={styles.text}>
-                  {event.people.current + "/" + event.people.total}
+                  {/* {event.people.current + "/" + event.people.total} */}
+                  {"Максимум людей: " + event.max_player}
                 </Text>
               </View>
             </View>
             <View style={styles.description}>
-              <Text style={styles.text}>{event.desc}</Text>
+              <Text style={styles.text}>{event.comment}</Text>
             </View>
             <View style={styles.participants}>
               <View style={styles.participants_header}>
@@ -134,7 +160,7 @@ const EventPage: React.FC = () => {
                   {"Список участников:"}
                 </Text>
               </View>
-              {event.participants?.map(participant => (
+              {participants.map((participant: any) => (
                 <View key={participant.uid} style={styles.participant}>
                   <Image
                     style={styles.participants_icon}
@@ -143,7 +169,7 @@ const EventPage: React.FC = () => {
                     }}
                   />
                   <Text style={styles.participants_title}>
-                    {participant.displayName}
+                    {participant.first_name + " " + participant.second_name}
                   </Text>
                 </View>
               ))}
@@ -207,7 +233,8 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   participants: {
-    backgroundColor: "#C4C4C4",
+    borderWidth: 1,
+    borderColor: "#F86624",
     borderRadius: 8,
     padding: 8,
   },

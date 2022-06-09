@@ -7,6 +7,9 @@ import Input from "../../components/input";
 const LoginPage: React.FC = () => {
   const history = useHistory();
 
+  const [email, setEmail] = React.useState<string>("");
+  const [password, setPassword] = React.useState<string>("");
+
   const auth = () => {
     history.push("/profile");
   };
@@ -20,16 +23,19 @@ const LoginPage: React.FC = () => {
 
         <View style={styles.inputs}>
           <Input
-            style={styles.input}
+            // style={styles.input}
             label="Почта"
             placeholder="Введите почту..."
-            onChange={() => undefined}
+            value={email}
+            onChangeText={setEmail}
           />
           <Input
-            style={styles.input}
+            // style={styles.input}
             label="Пароль"
             placeholder="Введите пароль..."
-            onChange={() => undefined}
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry
           />
           <Button title="Войти" onPress={auth} />
         </View>
@@ -37,7 +43,7 @@ const LoginPage: React.FC = () => {
         <View style={styles.inviteToSignUp}>
           <Text style={styles.signUp_text}>{"Ещё нет аккаунта?"}&#32;</Text>
           <Link to="/signup">
-            <Text>{"Зарегистрироваться"}</Text>
+            <Text style={styles.link}>{"Зарегистрироваться"}</Text>
           </Link>
         </View>
       </View>
@@ -88,5 +94,12 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto",
     fontSize: 14,
     fontWeight: "300",
+  },
+  link: {
+    fontFamily: "Roboto",
+    fontSize: 14,
+    fontWeight: "300",
+    color: "blue",
+    textDecorationLine: "underline",
   },
 });

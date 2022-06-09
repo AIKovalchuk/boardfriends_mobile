@@ -22,7 +22,7 @@ const About: React.FC<Props> = ({ nextStep }) => {
         placeholder="Расскажите немного о себе..."
         onChange={() => undefined}
       />
-      <Button title="Зарегестрироваться" onPress={nextStep} />
+      <Button title="Зарегистрироваться" onPress={nextStep} />
     </View>
   );
 };
