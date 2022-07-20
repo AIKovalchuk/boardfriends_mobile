@@ -1,48 +1,68 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import React from "react";
 import { Drawer } from "../components/drawer";
+import { AuthContext } from "../provider/auth";
 import { HomeScreen, SignInScreen, SignUpScreen } from "../screens";
+import EventScreen from "../screens/event";
+import ProfileScreen from "../screens/profile";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Icon from "react-native-vector-icons/MaterialIcons";
+import ProfileRouter from "./profile";
+import { COLORS } from "../constants/theme";
+import CreateEventScreen from "../screens/create";
+import EventStack from "./event";
 
 export type RootStackParamList = {
   Home: undefined;
-  Profile: undefined;
+  Create: undefined;
+  Users: undefined;
   Settings: undefined;
-  // Login: undefined;
-  SignIn: undefined;
-  SignUp: undefined;
-  // Create: undefined;
-  // Event: undefined;
 };
 
-const HomeStack = createDrawerNavigator<RootStackParamList>();
+const HomeStack = createBottomTabNavigator<RootStackParamList>();
 
 const AppStack: React.FC = () => {
   return (
     <HomeStack.Navigator
       initialRouteName="Home"
-      drawerContent={props => <Drawer {...props} />}>
-      <HomeStack.Screen name="Home" component={HomeScreen} />
+      screenOptions={{ tabBarActiveTintColor: COLORS.primary }}>
       <HomeStack.Screen
-        name="SignIn"
-        component={SignInScreen}
-        options={{ title: "Войти", headerShown: false }}
-      />
-      <HomeStack.Screen
-        name="SignUp"
-        component={SignUpScreen}
+        name="Home"
+        component={EventStack}
         options={{
-          title: "Войти",
+          title: "Главная",
           headerShown: false,
-          drawerItemStyle: {
-            display: "none",
-          },
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="home" size={size} color={color} />
+          ),
         }}
       />
       <HomeStack.Screen
+        name="Create"
+        component={CreateEventScreen}
+        options={{
+          title: "Создать событие",
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="add" size={size} color={color} />
+          ),
+        }}
+      />
+      <HomeStack.Screen
+        name="Users"
+        component={ProfileRouter}
+        options={{
+          title: "Профиль",
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="person" size={size} color={color} />
+          ),
+        }}
+      />
+      {/* <HomeStack.Screen
         name="Settings"
         component={HomeScreen}
         options={{ title: "Настройки" }}
-      />
+      /> */}
     </HomeStack.Navigator>
   );
 };

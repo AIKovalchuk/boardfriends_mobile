@@ -1,7 +1,7 @@
 interface Event {
   id: number;
-  name: string;
-  comment: string;
+  title: string;
+  description: string;
   time: string;
   date: string;
 }

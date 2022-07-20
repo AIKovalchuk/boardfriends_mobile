@@ -10,12 +10,12 @@ const EventCard: React.FC<Props> = ({ event }) => {
   return (
     <View style={styles.card}>
       <View style={styles.header}>
-        <Text style={styles.title}>{event.name}</Text>
+        <Text style={styles.title}>{event.title}</Text>
         {/* TODO: Tags */}
       </View>
       <View style={styles.main}>
         <View style={styles.about}>
-          <Text style={styles.text}>{"О событии: " + event.comment}</Text>
+          <Text style={styles.text}>{"О событии: " + event.description}</Text>
         </View>
         <View style={styles.time}>
           <Text style={styles.text}>{event.time}</Text>

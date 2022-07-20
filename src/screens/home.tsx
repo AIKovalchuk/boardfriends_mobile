@@ -3,31 +3,28 @@ import React from "react";
 import Input from "../components/input";
 import EventList from "../components/eventsList";
 import Event from "../domain/Event";
+import { useFocusEffect } from "@react-navigation/native";
+import EventService from "../service/event";
 
 const HomeScreen: React.FC = () => {
+  const eventService = React.useMemo(() => new EventService(), []);
   const [query, setQuery] = React.useState<string>();
   const [events, setEvents] = React.useState<Event[]>([]);
 
   const loadData = async () => {
-    const events$: Event[] = await fetch(
-      "http://13.38.229.216:5000/api/events",
-      {
-        method: "GET",
-      },
-    ).then(res => res.json());
+    const events$ = await eventService.getAllEvents();
+    console.log("DEBUG", events$);
     setEvents(events$);
   };
 
-  React.useEffect(() => {
-    loadData();
-  }, []);
+  useFocusEffect(
+    React.useCallback(() => {
+      loadData();
+    }, []),
+  );
+
   return (
     <View style={styles.container}>
-      <Input
-        placeholder="Печатать тут..."
-        value={query}
-        onChangeText={setQuery}
-      />
       <EventList events={events} />
     </View>
   );

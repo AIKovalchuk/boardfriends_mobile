@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const deviceStorage = {
+class DeviceStorage {
   async getItem(key: string) {
     try {
       const value = await AsyncStorage.getItem(key);
@@ -10,7 +10,7 @@ const deviceStorage = {
     } catch (error: any) {
       console.log("AsyncStorage Error: " + error.message);
     }
-  },
+  }
 
   async saveItem(key: string, value: string) {
     try {
@@ -18,7 +18,7 @@ const deviceStorage = {
     } catch (error: any) {
       console.log("AsyncStorage Error: " + error.message);
     }
-  },
-};
+  }
+}
 
-export default deviceStorage;
+export default DeviceStorage;

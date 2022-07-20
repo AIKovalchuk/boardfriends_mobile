@@ -24,7 +24,7 @@ const Input: React.FC<Props & TextInputProps> = ({
   ...props
 }) => {
   return (
-    <View style={{ marginBottom: 20 }}>
+    <View style={{ marginBottom: 20, marginHorizontal: 8 }}>
       <Text style={styles.label}>{label}</Text>
       <View style={[styles.inputContainer]}>
         <TextInput

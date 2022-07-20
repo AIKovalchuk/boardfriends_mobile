@@ -1,47 +1,38 @@
+import { Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { SafeAreaView, StyleSheet, Text, View, Image } from "react-native";
+import { AuthContext } from "../provider/auth";
 
-const person = {
-  firstName: "Александр",
-  secondName: "Ковальчук",
-  photo:
-    "https://feminissimo.ru/core/fileman/Uploads/%D0%BE%D1%82%D0%BD%D0%BE%D1%88%D0%B5%D0%BD%D0%B8%D1%8F/%D0%BC%D1%83%D0%B6%D1%87%D0%B8%D0%BD%D0%B0%20%D0%BB%D0%B8%D0%B4%D0%B5%D1%80/uverennost_v_muzhchine_0.jpg",
-  registredAt: "22.04.2022",
-  city: "Нижний Новгород",
-  age: "23",
-  about:
-    "Всем привет! Я айтишник, в свободное время люблю поиграть в настольные игры. Одни из любимых игры это Грааль и Серп.",
-};
+const ProfileScreen = () => {
+  const { getUser } = React.useContext(AuthContext);
 
-const ProfilePage: React.FC = () => {
+  const user = getUser();
+
   return (
     <SafeAreaView style={styles.safeAreaView}>
       <View style={styles.page}>
         <View style={styles.head}>
           <View style={styles.bio}>
             <Text style={styles.name}>
-              {person.firstName + " " + person.secondName}
+              {user?.firstName + " " + user?.lastName}
             </Text>
-            <Text style={styles.detailed}>
-              {person.city + ", " + person.age + " лет"}
-            </Text>
+            <Text style={styles.detailed}>{"0" + " лет"}</Text>
             <Text style={styles.sub_info}>
-              {"Зарегестрирован: " + person.registredAt}
+              {"Зарегестрирован: " + "тогда-то"}
             </Text>
-            <Text style={styles.sub_info}>{"Город: " + person.city}</Text>
+            <Text style={styles.sub_info}>{"Город: " + user?.cityId}</Text>
           </View>
           <View style={styles.photo}>
             <Image
               style={styles.photo_image}
               source={{
-                uri: person.photo,
+                uri: "https://feminissimo.ru/core/fileman/Uploads/%D0%BE%D1%82%D0%BD%D0%BE%D1%88%D0%B5%D0%BD%D0%B8%D1%8F/%D0%BC%D1%83%D0%B6%D1%87%D0%B8%D0%BD%D0%B0%20%D0%BB%D0%B8%D0%B4%D0%B5%D1%80/uverennost_v_muzhchine_0.jpg",
               }}
             />
           </View>
         </View>
         <View style={styles.about}>
           <Text style={styles.about_text}>{"О себе:"}</Text>
-          <Text style={styles.about_text}>{person.about}</Text>
+          <Text style={styles.about_text}>{user?.about}</Text>
         </View>
         <View style={styles.events}>
           <Text>{"Вы записаны"}</Text>
@@ -52,7 +43,7 @@ const ProfilePage: React.FC = () => {
   );
 };
 
-export default ProfilePage;
+export default ProfileScreen;
 
 const styles = StyleSheet.create({
   safeAreaView: {

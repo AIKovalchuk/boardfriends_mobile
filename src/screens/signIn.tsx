@@ -13,10 +13,11 @@ const SignInScreen: React.FC<Props> = ({ navigation }) => {
   const { login } = React.useContext(AuthContext);
 
   const [email, setEmail] = React.useState<string>("");
-  const [pwd, setPassword] = React.useState<string>("");
+  const [password, setPassword] = React.useState<string>("");
 
-  const onLogin = () => {
-    login(email, pwd);
+  const onLogin = async () => {
+    await login(email, password);
+    navigation.navigate("Home", undefined);
   };
 
   const onSignUp = () => navigation.navigate("SignUp", undefined);
@@ -24,11 +25,11 @@ const SignInScreen: React.FC<Props> = ({ navigation }) => {
   return (
     <View style={styles.page}>
       <View style={styles.header}>
-        <Text style={styles.text_header}>Header</Text>
+        <Text style={styles.text_header}>Добро пожаловать!</Text>
       </View>
       <View style={styles.footer}>
         <Input label="Email" value={email} onChangeText={setEmail} />
-        <Input label="Password" value={pwd} onChangeText={setPassword} />
+        <Input label="Password" value={password} onChangeText={setPassword} />
         <Button title="Войти" onPress={onLogin} />
         <Button title="Зарегистрироваться" onPress={onSignUp} />
       </View>
